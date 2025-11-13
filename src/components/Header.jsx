@@ -63,7 +63,7 @@ export default function Header() {
         </div>
         </Link>
 
-        <button className="bg-rose-800 text-white py-2 px-4 text-l rounded cursor-pointer  hover:bg-transparent hover:text-black border duration-300">
+        <button className="bg-rose-700 text-white py-2 px-4 text-l rounded cursor-pointer  hover:bg-transparent hover:text-black border duration-300">
           Get Started
         </button>
       </div>

@@ -53,7 +53,7 @@ function onClose(){
       </div>
 
       {/* Links */}
-      <div className='flex flex-col gap-4 items-center'>
+      <div className='hidden flex-col gap-4 items-center lg:flex'>
         <h2 className='text-xl font-medium'>Information</h2>
         <ul className='flex flex-col gap-2 *:hover:cursor-pointer *:hover:text-red-500 '>
             <li >
@@ -79,7 +79,7 @@ function onClose(){
       </div>
 
       {/* Contact */}
-      <div className='flex flex-col gap-4 items-center'>
+      <div className='hidden flex-col gap-4 items-center lg:flex'>
 
         <h2 className='text-xl font-medium'>Contact</h2>
        
