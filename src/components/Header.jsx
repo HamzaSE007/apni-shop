@@ -2,12 +2,11 @@ import React, { useContext } from 'react'
 import { FcShop } from "react-icons/fc";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link, NavLink } from 'react-router-dom';
-import { addCartContext } from '../context/AddCart';
+import { AddContext } from '../context/addCartContext';
 
 
 export default function Header() {
-  const productId = useContext(addCartContext);
-  console.log(productId);
+  const {cart} = useContext(AddContext);
   
   return (
     <header className="w-full bg-gray-100 p-4 flex justify-around items-center flex-wrap shadow-2xl sticky top-0 z-20 duration-300">
@@ -58,7 +57,7 @@ export default function Header() {
         <div className='relative cursor-pointer'>
           <MdOutlineShoppingCart className='text-3xl'/>
           <span className='absolute -top-2.5 -right-2.5 rounded-full bg-rose-600 text-white size-4 flex items-center justify-center text-sm'>
-              {productId}
+              {cart.length}
           </span>
         </div>
         </Link>

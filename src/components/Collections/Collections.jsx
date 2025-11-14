@@ -33,6 +33,7 @@ export default function Collections() {
                 <Link to={`/product-detail/${product.id}`}>
                   <ProductCard
                   key={product.id}
+                  id = {product.id}
                   title={product.title}
                   price={product.price}
                   category={product.category}

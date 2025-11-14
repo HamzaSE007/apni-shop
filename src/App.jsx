@@ -1,16 +1,16 @@
 import { Footer, Header} from "./components"
 import { Outlet } from "react-router-dom"
-import createAddContext from "./context/AddCart"
 import { useState } from "react"
+import AddContextProvider from "./context/addCartContext"
 
 function App() {
   return (
     <>
-    <createAddContext>
+    <AddContextProvider>
      <Header />
      <Outlet />
      <Footer />
-    </createAddContext>
+    </AddContextProvider>
     </>
   )
 }

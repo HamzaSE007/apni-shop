@@ -1,45 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { getProductById } from '../../services/Products';
+import React, { useContext } from 'react';
 import { MdDelete } from "react-icons/md";
 import { IoBagCheckOutline } from "react-icons/io5";
+import { AddContext } from '../../context/addCartContext';
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 export default function ShoppingCart() {
-  const [product, setProduct] = useState({});
-  const [quantity, setQuantity] = useState(1);
+
+  const {cart,setCart} = useContext(AddContext);
+  
 
   // handle Quantity
-  function handleQuantity(e){
+  function handleQuantity(e,id){
     if(e.target.id === 'decrement'){
-      console.log('dec');
-      
-      if(quantity <= 1) return;
-      setQuantity(preVal => preVal -1);
+      setCart(prev => (
+        prev.map(item =>{
+          if(item.quantity <= 1) return item;
+          
+          if(item.id === id) {
+            const unitPrice = item.price;
+            return {...item, quantity:item.quantity - 1, price: (unitPrice / (item.quantity - 1)).toFixed(2)}
+          } else{
+            return item
+          }
+    })
+    ))
     }
-    else if(e.target.id === 'increment'){
-      console.log('incre');
-      if(quantity >= 10) return;
-      setQuantity(preVal => preVal + 1);
+
+    if(e.target.id === 'increment'){
+      setCart(prev => (
+        prev.map(item =>{
+          if(item.quantity >= 10) return item;
+          if(item.id === id) {
+            const unitPrice = item.price;
+            return {...item, quantity:item.quantity + 1, price: (unitPrice * (item.quantity + 1)).toFixed(2)}
+          } else{
+            return item
+          }
+     })
+    ))
     }
   }
 
-  const getOneProduct = async () => {
-    try {
-      const data = await getProductById(1);
-      setProduct(data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  // handle Delete 
+  function handleDelCart(id){
+    setCart(prev => prev.filter(item => item.id !== id))
+  }
 
-  useEffect(() => {
-    getOneProduct();
-  }, []);
 
   return (
     <div className="p-14 bg-white flex flex-col justify-center items-center gap-6 ">
       <h1 className="text-2xl font-bold">Shopping Cart</h1>
 
-     <div className="bg-gray-100 p-4 rounded shadow-2xl w-full max-w-11/12 overflow-x-auto overflow-y-auto max-h-[400px]">
+     <div className="bg-gray-100 p-4 rounded shadow-2xl w-full max-w-11/12 overflow-x-auto ">
   <table className="w-full min-w-5xl rounded">
     <thead className="border-b border-gray-400 *:p-2 bg-white sticky top-0 z-10">
       <tr className="grid grid-cols-5 font-semibold text-gray-700">
@@ -52,32 +65,34 @@ export default function ShoppingCart() {
     </thead>
 
     <tbody className="border-b border-gray-400 *:p-2 ">
-      <tr className="grid grid-cols-5 items-center text-center duration-200 odd:bg-gray-200">
+      {
+        cart.map(item => (
+          <tr className="grid grid-cols-5 items-center text-center duration-200 odd:bg-gray-200">
         <td>
           <div className="w-12 mx-auto">
             <img
-              src={product.image}
-              alt={product.title}
+              src={item.image}
+              alt={item.title}
               className="object-contain"
             />
           </div>
         </td>
 
         <td>
-          <h3 className="font-semibold">{product.title}</h3>
+          <h3 className="font-semibold">{item.title}</h3>
         </td>
 
         <td>
-          <p className="font-medium">${product.price}</p>
+          <p className="font-medium">${item.price}</p>
         </td>
 
         <td>
           <div className="flex gap-4 items-center justify-center">
-            <button onClick={handleQuantity} id='decrement' className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
+            <button onClick={(e)=>handleQuantity(e,item.id)} id='decrement' className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
               -
             </button>
-            <span className="text-2xl">{quantity}</span>
-            <button onClick={handleQuantity} id='increment'  className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
+            <span className="text-2xl">{item.quantity}</span>
+            <button onClick={(e)=>handleQuantity(e,item.id)} id='increment'  className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
               +
             </button>
           </div>
@@ -85,16 +100,37 @@ export default function ShoppingCart() {
 
         <td>
           <div className="flex gap-3 justify-center items-center">
-            <button className="bg-gray-300 px-2 py-1 rounded flex items-center gap-1 hover:bg-transparent border border-gray-400 group cursor-pointer">
-              <IoBagCheckOutline className="group-hover:text-red-600" />
-              Check Out
-            </button>
-            <MdDelete className="hover:text-rose-600 text-2xl cursor-pointer" />
+            
+            <MdDelete onClick={()=>handleDelCart(item.id)} className="hover:text-rose-600 text-2xl cursor-pointer" />
           </div>
         </td>
       </tr>
+        ))
+      }
+      
     </tbody>
   </table>
+  {/* button */}
+  {
+    cart.length >= 1 ?
+    (<div className='flex-col justify-center items-center *:cursor-pointer mt-4 md:flex md:flex-row md:justify-between'>
+
+   <Link to='/'>
+    <button className='font-semibold hover:text-red-600 gap-1 flex items-center group cursor-pointer'>
+      <FaArrowLeftLong className='hidden group-hover:inline duration-500'/>
+      Continue Shopping
+    </button>
+   </Link>
+
+    <button className="bg-gray-300 px-2 py-1 rounded flex items-center gap-1 hover:bg-transparent border border-gray-400 group">
+      <IoBagCheckOutline className="group-hover:text-red-600" />
+      Check Out
+    </button>
+  </div>)
+
+  : ''
+
+}
 </div>
 
     </div>
