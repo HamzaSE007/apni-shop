@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function HeroSection({productsRef, toScrollRef}) {
+export default function HeroSection({productsRef}) {
 
   function handleScroll(){
     productsRef.current.scrollIntoView({ behavior: "smooth"});
   }
   return (
-    <div ref={toScrollRef} className="h-[80vh] flex justify-center items-center px-4 text-white bg-[#212121] bg-[url(https://images.pexels.com/photos/2079438/pexels-photo-2079438.jpeg)] bg-cover bg-center bg-blend-overlay overflow-hidden">
+    <div className="h-[80vh] flex justify-center items-center px-4 text-white bg-[#212121] bg-[url(https://images.pexels.com/photos/2079438/pexels-photo-2079438.jpeg)] bg-cover bg-center bg-blend-overlay overflow-hidden">
       {/* Intro */}
       <div className="flex flex-col items-center gap-6">
         <p className="text-4xl font-semibold">

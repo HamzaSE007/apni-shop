@@ -1,18 +1,20 @@
-import { Footer, Header} from "./components"
-import { Outlet } from "react-router-dom"
-import { useState } from "react"
-import AddContextProvider from "./context/addCartContext"
+import { Footer, Header } from "./components";
+import { Outlet } from "react-router-dom";
+import AddContextProvider from "./context/addCartContext";
+import CartDrawerContextProvider from "./context/CartDrawerContext";
 
 function App() {
   return (
     <>
-    <AddContextProvider>
-     <Header />
-     <Outlet />
-     <Footer />
-    </AddContextProvider>
+      <AddContextProvider>
+        <CartDrawerContextProvider>
+          <Header />
+          <Outlet />
+          <Footer />
+        </CartDrawerContextProvider>
+      </AddContextProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

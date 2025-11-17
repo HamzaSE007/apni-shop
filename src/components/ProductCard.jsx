@@ -1,28 +1,45 @@
 import React, { useContext } from 'react'
 import { FaCartPlus } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
 import { AddContext } from '../context/addCartContext';
+import { CartDrawerContext } from '../context/CartDrawerContext';
 
 
 export default function ProductCard({title,price,category,image,id,quantity=1}) {
   const {cart,setCart} = useContext(AddContext);
+  const {setIsOpen} = useContext(CartDrawerContext);
   
   // Add Data into Cart
   function handleAddToCart(e){
     e.preventDefault();
 
-    const productExist = cart.find(item => item.id === id);
+    // open cart drawer
+    setIsOpen(true);
+
+    // Check Product Exist
+    const isProductExist = cart.find(item => item.id === id);
     
-    if(productExist){
+    if(isProductExist){
       setCart(prev => (
-        prev.map(item => (
-          item.id === id ? {...item, price: item.price + price, quantity: item.quantity + 1} : item
-        ))
+        prev.map(item => {
+          if(item.id !== id) return item;
+
+          const unitPrice = item.price / item.quantity;
+          if(item.quantity < 10){
+            return {
+              ...item,
+              price: (unitPrice * (item.quantity + 1)).toFixed(2),
+              quantity: item.quantity + 1
+            }
+          }
+
+          return item;
+        }) 
       ))
       
       return;
     } 
     
+    // new Product add into cart
     setCart(prev => [...prev, {title,price,image,id,quantity}]);
   }
     

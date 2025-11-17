@@ -10,37 +10,41 @@ export default function ShoppingCart() {
   const {cart,setCart} = useContext(AddContext);
   
 
-  // handle Quantity
-  function handleQuantity(e,id){
-    if(e.target.id === 'decrement'){
-      setCart(prev => (
-        prev.map(item =>{
-          if(item.quantity <= 1) return item;
-          
-          if(item.id === id) {
-            const unitPrice = item.price;
-            return {...item, quantity:item.quantity - 1, price: (unitPrice / (item.quantity - 1)).toFixed(2)}
-          } else{
-            return item
-          }
-    })
-    ))
-    }
+  // increment Quantity
+  function incrementQuantity(id){
+    setCart(prev => prev.map(item => {
+      if(item.id !== id) return item;
 
-    if(e.target.id === 'increment'){
-      setCart(prev => (
-        prev.map(item =>{
-          if(item.quantity >= 10) return item;
-          if(item.id === id) {
-            const unitPrice = item.price;
-            return {...item, quantity:item.quantity + 1, price: (unitPrice * (item.quantity + 1)).toFixed(2)}
-          } else{
-            return item
-          }
-     })
-    ))
-    }
+      const unitPrice = item.price / item.quantity;
+      if(item.quantity < 10){
+        return {
+          ...item,
+          price: (unitPrice * (item.quantity + 1)).toFixed(2),
+          quantity: item.quantity + 1,
+        }
+      }
+      return item;
+   }))
   }
+
+  // decrement Quantity
+  function decrementQuantity(id){
+    setCart(prev => prev.map(item =>{
+      if(item.id !== id) return item;
+
+      const unitPrice = item.price / item.quantity;
+      if(item.quantity > 1){
+        return {
+          ...item,
+          price: (unitPrice * (item.quantity - 1)).toFixed(2),
+          quantity: item.quantity - 1,
+        }
+      }
+
+      return item;
+    }))
+  }
+  
 
   // handle Delete 
   function handleDelCart(id){
@@ -88,11 +92,11 @@ export default function ShoppingCart() {
 
         <td>
           <div className="flex gap-4 items-center justify-center">
-            <button onClick={(e)=>handleQuantity(e,item.id)} id='decrement' className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
+            <button onClick={()=>decrementQuantity(item.id)} className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
               -
             </button>
             <span className="text-2xl">{item.quantity}</span>
-            <button onClick={(e)=>handleQuantity(e,item.id)} id='increment'  className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
+            <button onClick={()=>incrementQuantity(item.id)} className="bg-gray-400 h-8 w-10 p-1 rounded-full font-bold cursor-pointer hover:bg-gray-500">
               +
             </button>
           </div>

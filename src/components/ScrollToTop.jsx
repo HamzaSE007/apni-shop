@@ -12,6 +12,7 @@ export default function ScrollToTop() {
     }
   }
 
+  // Add event listener on window object
   window.addEventListener("scroll", handleScroll);
 
   function scrollTop() {
