@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useTransition } from 'react'
+import React, { useContext, useEffect, useState, useTransition } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductById } from '../../services/Products';
 import { FaCartPlus } from "react-icons/fa6";
@@ -7,7 +7,8 @@ import { FaCartPlus } from "react-icons/fa6";
 export default function ProductDetail() {
     const {productId} = useParams();
     const [isPending, startTransition] = useTransition();
-    const [product, setproduct] = useState({});    
+    const [product, setproduct] = useState({});
+    
 
     // Get Product
     async function getProduct(){
