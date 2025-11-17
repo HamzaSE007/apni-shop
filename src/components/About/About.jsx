@@ -20,12 +20,12 @@ export default function About() {
 
         {/* Detail */}
         <div className="flex flex-col gap-6 justify-center items-center">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ">
             <span>
-              <span className="text-red-600 font-bold text-2xl text-center">
+              <span className="text-red-600 font-bold text-3xl text-center">
                 Apni
               </span>
-              <span>Shop.</span>
+              <span className="text-xl">shop.</span>
             </span>
             <FcShop className="text-2xl" />
           </div>

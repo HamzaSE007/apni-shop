@@ -16,7 +16,7 @@ export default function Home() {
       <TrendingProduct productsRef={productsRef} />
       <Partners />
       <ScrollToTop />
-      <CartDrawer/>
+      
       
     </main>
   );
