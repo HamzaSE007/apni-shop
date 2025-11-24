@@ -20,6 +20,7 @@ import {
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store.js";
 import Login from "./components/Login/Login.jsx";
+import MainAdminPage from "./components/Admin/main/mainAdminPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="/shopping-cart" element={<ShoppingCart />} />
       </Route>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/admin" element={<MainAdminPage/>}/>
     </>
   )
 );
