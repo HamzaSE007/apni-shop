@@ -4,50 +4,45 @@ import { FaSquareInstagram, FaSquareTwitter } from "react-icons/fa6";
 
 export default function About() {
   return (
-    <div className="p-14 flex flex-col gap-4">
-      <h2 className="text-center text-2xl font-semibold">About</h2>
+    <div className="p-14 flex flex-col gap-8">
+  <h2 className="text-center text-2xl font-semibold">About</h2>
 
-      <div className="p-14 grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div className="p-8 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
-        {/* Image */}
-        <div className="grid place-content-center">
-          <img
-            src="https://images.pexels.com/photos/135620/pexels-photo-135620.jpeg"
-            alt="shop-img"
-            className="rounded-xl drop-shadow-2xl"
-          />
-        </div>
+    {/* Image */}
+    <div className="grid place-content-center">
+      <img
+        src="https://images.pexels.com/photos/135620/pexels-photo-135620.jpeg"
+        alt="Interior of Apni Shop"
+        className="rounded-xl drop-shadow-2xl object-cover w-full max-w-md h-[400px]"
+      />
+    </div>
 
-        {/* Detail */}
-        <div className="flex flex-col gap-6 justify-center items-center">
-          <div className="flex items-center gap-2 ">
-            <span>
-              <span className="text-red-600 font-bold text-3xl text-center">
-                Apni
-              </span>
-              <span className="text-xl">shop.</span>
-            </span>
-            <FcShop className="text-2xl" />
-          </div>
+    {/* Details */}
+    <div className="flex flex-col gap-6 items-center text-center">
+      <div className="flex items-center gap-2">
+        <span className="text-3xl font-bold text-red-600">Apni</span>
+        <span className="text-xl">shop.</span>
+        <FcShop className="text-2xl" />
+      </div>
 
-          <p className="text-center">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
-            architecto, mollitia excepturi consequuntur, aperiam facilis odit,
-            dignissimos adipisci quo id delectus necessitatibus sequi laudantium
-            eius? Corrupti et expedita tempora recusandae.Lorem ipsum dolor sit,
-            amet consectetur adipisicing elit. Commodi architecto, mollitia
-            excepturi consequuntur, aperiam facilis odit, dignissimos adipisci
-            quo id delectus necessitatibus sequi laudantium eius? Corrupti et
-            expedita tempora recusandae.
-          </p>
+      <p className="max-w-prose">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi architecto, mollitia excepturi consequuntur, aperiam facilis odit, dignissimos adipisci quo id delectus necessitatibus sequi laudantium eius? Corrupti et expedita tempora recusandae.
+      </p>
 
-          {/* Social Btn */}
-          <div className="flex gap-8 *:cursor-pointer">
-            <FaSquareInstagram className="text-2xl hover:text-pink-500" />
-            <FaSquareTwitter className="text-2xl hover:text-[#00acee]" />
-          </div>
-        </div>
+      <p className="max-w-prose">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi architecto, mollitia excepturi consequuntur, aperiam facilis odit, dignissimos adipisci quo id delectus necessitatibus sequi laudantium eius? Corrupti et expedita tempora recusandae.
+      </p>
+
+      {/* Social Links */}
+      <div className="flex gap-8">
+        <FaSquareInstagram className="text-2xl cursor-pointer hover:text-pink-500 transition-colors duration-300" />
+        <FaSquareTwitter className="text-2xl cursor-pointer hover:text-[#00acee] transition-colors duration-300" />
       </div>
     </div>
+
+  </div>
+</div>
+
   );
 }

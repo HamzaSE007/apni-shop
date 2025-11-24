@@ -1,37 +1,45 @@
-import React from 'react'
 import { CiDeliveryTruck } from "react-icons/ci";
 import { GiBackForth } from "react-icons/gi";
 import { RxTimer } from "react-icons/rx";
 
 export default function Services() {
+  const ourServices = [
+    {
+      icon: <CiDeliveryTruck className="text-6xl" />,
+      title: "Fast Delivery",
+      desc: "We deliver your products quickly and safely right to your doorstep.",
+      bg: "from-green-200 to-green-300"
+    },
+    {
+      icon: <RxTimer className="text-6xl" />,
+      title: "24/7 Support",
+      desc: "Our support team is available 24/7 to assist you with any questions.",
+      bg: "from-blue-200 to-blue-300"
+    },
+    {
+      icon: <GiBackForth className="text-6xl" />,
+      title: "Return Policy",
+      desc: "Easy and smooth return policy to ensure worry-free shopping.",
+      bg: "from-yellow-200 to-yellow-300"
+    }
+  ];
+
   return (
-    <div className='bg-white p-14 grid grid-cols-1 gap-8'>        
-        <h2 className='text-center text-3xl font-semibold'>Our Services</h2>
-        
-        {/* Cards */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+    <div className="bg-white py-16 px-6">
+      <h2 className="text-center text-3xl font-bold mb-10">Our Services</h2>
 
-            {/* Fast Delivery */}
-            <div className='bg-green-300 px-6 py-4 flex flex-col justify-center items-center gap-4 rounded-xl '>
-                <CiDeliveryTruck className='text-6xl '/>
-                <h3 className='text-2xl font-medium'>Fast Delivery</h3>
-                <p className='text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe consectetur qui vitae animi facilis quo est atque dolorum ullam sed velit laborum similique, provident illo dolore aut possimus officia quae.</p>
-            </div>
-
-            {/* 24/7 Support */}
-            <div className='bg-blue-300 px-6 py-4 flex flex-col justify-center items-center gap-4 rounded-xl '>
-                <RxTimer className='text-6xl '/>
-                <h3 className='text-2xl font-medium'>24/7 Support</h3>
-                <p className='text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe consectetur qui vitae animi facilis quo est atque dolorum ullam sed velit laborum similique, provident illo dolore aut possimus officia quae.</p>
-            </div>
-
-            {/* Return Product Policy */}
-            <div className='bg-yellow-200 px-6 py-4 flex flex-col justify-center items-center gap-4 rounded-xl '>
-                <GiBackForth className='text-6xl '/>
-                <h3 className='text-2xl font-medium'>Return Policy</h3>
-                <p className='text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe consectetur qui vitae animi facilis quo est atque dolorum ullam sed velit laborum similique, provident illo dolore aut possimus officia quae.</p>
-            </div>
-        </div>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {ourServices.map((service, index) => (
+          <div
+            key={index}
+            className={`bg-gradient-to-br ${service.bg} px-6 py-8 rounded-xl flex flex-col items-center gap-4 text-center shadow-md hover:shadow-xl hover:-translate-y-2 duration-300 h-full`}
+          >
+            {service.icon}
+            <h3 className="text-2xl font-semibold">{service.title}</h3>
+            <p className="text-gray-700">{service.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }

@@ -1,81 +1,51 @@
-import React, { useContext } from 'react'
 import { FaCartPlus } from "react-icons/fa6";
-import { AddContext } from '../context/addCartContext';
-import { CartDrawerContext } from '../context/CartDrawerContext';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/slices/addToCartSlice";
+import { setIsOpen } from "../redux/slices/openCartDrawerSlice";
 
+export default function ProductCard({ title, price, category, image, id, quantity = 1, unitPrice }) {
 
-export default function ProductCard({title,price,category,image,id,quantity=1}) {
-  const {cart,setCart} = useContext(AddContext);
-  const {setIsOpen} = useContext(CartDrawerContext);
-  
-  // Add Data into Cart
-  function handleAddToCart(e){
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (e) => {
     e.preventDefault();
-
-    // open cart drawer
-    setIsOpen(true);
-
-    // Check Product Exist
-    const isProductExist = cart.find(item => item.id === id);
+    dispatch(setIsOpen(true))
+    dispatch(addToCart({ title, price, category, image, id, quantity, unitPrice}));
     
-    if(isProductExist){
-      setCart(prev => (
-        prev.map(item => {
-          if(item.id !== id) return item;
+  };
 
-          const unitPrice = item.price / item.quantity;
-          if(item.quantity < 10){
-            return {
-              ...item,
-              price: (unitPrice * (item.quantity + 1)).toFixed(2),
-              quantity: item.quantity + 1
-            }
-          }
-
-          return item;
-        }) 
-      ))
-      
-      return;
-    } 
-    
-    // new Product add into cart
-    setCart(prev => [...prev, {title,price,image,id,quantity}]);
-  }
-    
+ 
+  
+  
   return (
-    <div className='flex flex-col gap-6 bg-white p-4 rounded-lg cursor-pointer relative'>
+    <div className="flex flex-col gap-5 bg-white rounded-xl p-4 shadow-sm hover:shadow-xl duration-300 hover:-translate-y-1">
 
-        {/* Image */}
-      <div className='h-52 overflow-hidden rounded-md'>
+      {/* Image */}
+      <div className="h-56 overflow-hidden rounded-lg group">
         <img
           src={image}
           alt={title}
-          className='w-full h-full object-contain'
+          className="w-full h-full object-contain group-hover:scale-110 duration-300"
         />
       </div>
 
       {/* Title */}
-      <h2 className='text-lg font-medium'>{title.slice(0,12)}</h2>
+      <h2 className="text-lg font-semibold text-gray-800 truncate">{title}</h2>
+
+      {/* Category */}
+      <p className="text-sm text-gray-500">Category: <span className="text-gray-700">{category}</span></p>
 
       {/* Price */}
-      <p>
-        <span className='font-bold'>Price: </span>
-        ${price}
-      </p>
+      <p className="text-base font-semibold text-rose-600">${price}</p>
 
-      {/* category */}
-      <p>
-        <span className='font-bold'>Category: </span>
-        {category}
-      </p>
-
-      {/* Button */}     
-      <button onClick={handleAddToCart} className='w-full bg-rose-600 text-white text-lg font-medium border hover:bg-transparent hover:text-black duration-400 cursor-pointer py-2 rounded shadow-2xl flex justify-center items-center gap-2 '>
+      {/* Button */}
+      <button
+        onClick={handleAddToCart}
+        className="w-full flex items-center justify-center gap-2 bg-rose-600 text-white py-2.5 rounded-lg font-medium cursor-pointer hover:bg-rose-700 active:scale-95 duration-200 shadow-md"
+      >
+        <FaCartPlus className="text-xl" />
         Add to Cart
-       <FaCartPlus/>
       </button>
-      
     </div>
-  )
+  );
 }

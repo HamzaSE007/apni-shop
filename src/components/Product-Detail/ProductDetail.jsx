@@ -1,67 +1,65 @@
-import React, { useContext, useEffect, useState, useTransition } from 'react'
-import { useParams } from 'react-router-dom'
-import { getProductById } from '../../services/Products';
+import { useParams } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa6";
-
+import { useGetProductByIdQuery } from "../../services/products.api";
 
 export default function ProductDetail() {
-    const {productId} = useParams();
-    const [isPending, startTransition] = useTransition();
-    const [product, setproduct] = useState({});
-    
+  const { productId } = useParams();
+  const { data: product, isLoading, isError, error } = useGetProductByIdQuery(productId);
 
-    // Get Product
-    async function getProduct(){
-        startTransition(async () => {
-            const data = await getProductById(productId);
-            console.log(data);          
-            setproduct(data);
-        });
-    }
-
-    useEffect(()=>{
-        getProduct();
-    },[productId]);
-    
-    
-  return (
-    <div className='p-14 bg-white flex flex-col justify-center items-center gap-8'>
-        {/* Loader */}
-      <div className={isPending ? 'h-screen flex justify-center items-center' : 'hiiden'}>
-        <span className='h-10 w-10 bg-transparent rounded-full border-t-4 animate-spin border-indigo-600'></span>
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="h-[60vh] flex justify-center items-center bg-white">
+        <span className="h-12 w-12 border-4 border-t-indigo-600 rounded-full animate-spin"></span>
       </div>
-      <h1 className='text-2xl font-semibold '>Product Detail</h1>
+    );
+  }
 
-      {/* product Detail card */}
-      <div className='bg-gray-100 p-10 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-4 shadow'>
+  // Error state
+  if (isError) {
+    const errorMessage = error?.data?.message || "Something went wrong!";
+    return (
+      <div className="h-[60vh] flex justify-center items-center bg-white">
+        <p className="text-red-600 text-xl font-medium">{errorMessage}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-10 md:p-14 bg-white flex flex-col items-center gap-8">
+      <h1 className="text-3xl font-bold text-center">Product Detail</h1>
+
+      <div className="bg-gray-100 p-8 md:p-10 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-6 shadow-lg max-w-5xl w-full">
 
         {/* Image */}
-        <div className=' aspect-square p-6 rounded  m-auto'>
-          <img src={product.image} 
-               alt={product.title}
-               className='w-full h-full drop-shadow-2xl' />
+        <div className="flex justify-center items-center p-4">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="max-w-full max-h-[400px] object-contain rounded-lg drop-shadow-2xl"
+          />
         </div>
 
-        {/* Deatil */}
-        <div className='flex flex-col gap-8 flex-wrap'>
-          <h2 className='text-xl font-semibold text-red-600'>{product.title}</h2>
-          <p> 
-            <span className='font-semibold'>Category: </span> 
-            {product.category}
+        {/* Details */}
+        <div className="flex flex-col gap-6">
+          <h2 className="text-2xl font-bold text-red-600">{product.title}</h2>
+          <p>
+            <span className="font-semibold">Category: </span>{product.category}
           </p>
           <p>
-            <span className='font-semibold'>Price: </span>
-            <span className='font-bold text-red-600'> ${product.price}</span>
+            <span className="font-semibold">Price: </span>
+            <span className="text-red-600 font-bold">${product.price}</span>
           </p>
-          <p className='font-semibold'>Description:</p>
-          <p>{product.description}</p>
-          <button className='w-full bg-rose-600 text-white text-lg font-medium border hover:bg-transparent hover:text-black duration-400 cursor-pointer py-2 rounded shadow-2xl flex justify-center items-center gap-2 '>
-            Add to Cart
-            <FaCartPlus/>
+          <div>
+            <p className="font-semibold mb-2">Description:</p>
+            <p className="text-gray-700">{product.description}</p>
+          </div>
+
+          <button className="w-full bg-rose-600 text-white text-lg font-medium border rounded shadow-lg flex justify-center items-center gap-2 py-2 cursor-pointer transition duration-300 hover:bg-transparent hover:text-black hover:border-rose-600">
+            Add to Cart <FaCartPlus />
           </button>
         </div>
-        
       </div>
     </div>
-  )
+  );
 }

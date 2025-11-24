@@ -4,7 +4,6 @@ import TrendingProduct from "./TrendingProduct";
 import Partners from "./Partners";
 import HeroSection from "./HeroSection";
 import ScrollToTop from "../ScrollToTop";
-import CartDrawer from "../ShoppingCart/CartDrawer";
 
 export default function Home() {
   const productsRef = useRef();

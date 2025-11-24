@@ -1,13 +1,1 @@
 @import "tailwindcss";
-:root {
-  --animate-arrow: arrow 1s ease-in-out infinite;
-}
-
-@keyframes arrow {
-  0%{
-    transform: translateX(2px);
-  }
-  100%{
-    transform: translateX(-2px);
-  }
-}

@@ -1,47 +1,69 @@
-import React, { useEffect, useState, useTransition } from 'react'
-import { getAllProducts } from '../../services/Products'
-import ProductCard from '../ProductCard';
-import { Link } from 'react-router-dom';
+import ProductCard from "../ProductCard";
+import { Link } from "react-router-dom";
+import { useGetAllProductsQuery } from "../../services/products.api";
 
 export default function Collections() {
-  const [products, setProducts] = useState([]);
-  const [isPending, startTransition] = useTransition();
+  const { data, isLoading, isError, error } = useGetAllProductsQuery();
 
-  async function getData(){
-    startTransition(async () =>{
-      const data = await getAllProducts();
-      setProducts(data);
-    })
-      
+  // Handle Loading
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center bg-gray-100">
+        <span className="h-12 w-12 border-4 border-transparent border-t-indigo-600 rounded-full animate-spin"></span>
+      </div>
+    );
   }
 
-  useEffect(()=>{
-    getData();
-  },[]);
-  
-  
-  return (
-    <div className='bg-gray-100 p-14 flex flex-col gap-8 '>
-      <h2 className='text-center text-2xl font-semibold'>Our Collections</h2>
+  // Handle Error
+  if (isError) {
+    const errorMessage =
+      error?.originalStatus === 404
+        ? "404 - The products URL is incorrect."
+        : "Something went wrong. Please try again later.";
 
-      {/* Loader */}
-      <div className={isPending ? 'h-screen flex justify-center items-center' : 'hiiden'}>
-        <span className='h-10 w-10 bg-transparent rounded-full border-t-4 animate-spin border-indigo-600'></span>
+    return (
+      <div className="h-screen flex justify-center items-center bg-gray-100">
+        <p className="text-red-600 text-xl font-medium">{errorMessage}</p>
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-              {products.map(product => (
-                <Link to={`/product-detail/${product.id}`}>
-                  <ProductCard
-                  key={product.id}
-                  id = {product.id}
-                  title={product.title}
-                  price={product.price}
-                  category={product.category}
-                  image={product.image}
-                  />
-                </Link>
-              ))}
+    );
+  }
+
+  // Handle Empty Data
+  if (!data || data.length === 0) {
+    return (
+      <div className="h-screen flex justify-center items-center bg-gray-100">
+        <p className="text-gray-700 text-xl">No products available.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-gray-100 p-14 flex flex-col gap-10">
+      
+      {/* Title */}
+      <h2 className="text-center text-3xl font-semibold">
+        Our Collections
+      </h2>
+
+      {/* Product Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {data.map((product) => (
+          <Link
+            key={product.id}
+            to={`/product-detail/${product.id}`}
+            className="group block focus:outline-none focus:ring-2 focus:ring-indigo-600 rounded"
+          >
+            <ProductCard
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              unitPrice= {product.price}
+              category={product.category}
+              image={product.image}
+            />
+          </Link>
+        ))}
       </div>
     </div>
-  )
+  );
 }
