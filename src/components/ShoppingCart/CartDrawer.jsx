@@ -61,6 +61,7 @@ export default function CartDrawer() {
           />
 
           <div className="flex flex-col gap-2">
+
             {/* Title */}
             <h2 className="font-bold">
               {item.title?.slice(0, 12) + '..' || "Loading..."}
@@ -98,7 +99,7 @@ export default function CartDrawer() {
       {/* View Cart Page */}
       {cart.length > 0 && (
         <Link
-          onClick={() => setIsOpen(false)}
+          onClick={() => dispatch(setIsOpen(false))}
           to="/shopping-cart"
           className="bg-rose-600 w-full p-3 text-white rounded text-lg text-center shadow hover:bg-rose-700 mt-auto"
         >

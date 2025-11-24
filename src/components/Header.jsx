@@ -72,9 +72,11 @@ export default function Header() {
           </div>
         </Link>
 
-        <button className="bg-rose-700 text-white py-2 px-4 rounded hover:bg-transparent hover:text-black border duration-300">
+        <Link to='/login'>
+        <button className="bg-rose-700 text-white py-2 px-4 rounded hover:bg-transparent hover:text-black border duration-300 cursor-pointer">
           Get Started
         </button>
+        </Link>
       </div>
 
       {/* Hamburger (Animated) */}

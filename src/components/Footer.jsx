@@ -29,7 +29,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gray-100 px-6 py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <footer className="bg-gray-100 px-6 py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-3 gap-8 border-t border-gray-400">
 
       {/* Shop Details */}
       <div className="flex flex-col items-center gap-6 text-center">
