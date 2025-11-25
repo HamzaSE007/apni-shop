@@ -47,7 +47,7 @@ export default function Collections() {
 
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {data.map((product) => (
+        {data.products.map((product) => (
           <Link
             key={product.id}
             to={`/product-detail/${product.id}`}
@@ -59,7 +59,7 @@ export default function Collections() {
               price={product.price}
               unitPrice= {product.price}
               category={product.category}
-              image={product.image}
+              image={product.thumbnail}
             />
           </Link>
         ))}

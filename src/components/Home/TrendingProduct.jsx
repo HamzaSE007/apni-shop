@@ -32,7 +32,7 @@ export default function TrendingProduct({ productsRef }) {
 
       {!isLoading && !isError && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {data?.map((product) => (
+          {data.products?.map((product) => (
             <Link key={product.id} to={`/product-detail/${product.id}`}>
               <ProductCard
                 id={product.id}
@@ -40,7 +40,7 @@ export default function TrendingProduct({ productsRef }) {
                 price={product.price}
                 unitPrice= {product.price}
                 category={product.category}
-                image={product.image}
+                image={product.thumbnail}
               />
             </Link>
           ))}

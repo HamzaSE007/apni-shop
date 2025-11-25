@@ -34,7 +34,7 @@ export default function ProductDetail() {
         {/* Image */}
         <div className="flex justify-center items-center p-4">
           <img
-            src={product.image}
+            src={product.images[0]}
             alt={product.title}
             className="max-w-full max-h-[400px] object-contain rounded-lg drop-shadow-2xl"
           />

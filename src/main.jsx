@@ -13,6 +13,7 @@ import {
   About,
   Collections,
   Contact,
+  Customers,
   Home,
   ProductDetail,
   ShoppingCart,
@@ -21,10 +22,19 @@ import { Provider } from "react-redux";
 import { store } from "../src/redux/store.js";
 import Login from "./components/Login/Login.jsx";
 import MainAdminPage from "./components/Admin/main/mainAdminPage.jsx";
+import {
+  ProductCategoryList,
+  ProductList,
+  VendorList,
+  
+} from "./components/Admin/adminIndex.js";
+import Orders from "./components/Admin/Orders/Orders.jsx";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+    {/* HOME route */}
       <Route path="" element={<App />}>
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
@@ -33,8 +43,18 @@ const router = createBrowserRouter(
         <Route path="/product-detail/:productId" element={<ProductDetail />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
       </Route>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/admin" element={<MainAdminPage/>}/>
+
+      {/* login route */}
+      <Route path="/login" element={<Login />} />
+
+      {/* admin route */}
+      <Route path="/admin" element={<MainAdminPage />}>
+        <Route path="product-list" element={<ProductList />} />
+        <Route path="product-category-list" element={<ProductCategoryList />}/>
+        <Route path="orders" element={<Orders/>}/>
+        <Route path="customers" element={<Customers/>}/>
+        <Route path="vendors-list" element={<VendorList/>}/>
+      </Route>
     </>
   )
 );
