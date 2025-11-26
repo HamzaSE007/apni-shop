@@ -21,8 +21,10 @@ import {
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store.js";
 import Login from "./components/Login/Login.jsx";
-import MainAdminPage from "./components/Admin/main/mainAdminPage.jsx";
+import Layout from "./components/Admin/main/Layout.jsx";
 import {
+  AdminHome,
+  CreateVendor,
   ProductCategoryList,
   ProductList,
   VendorList,
@@ -48,12 +50,14 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
 
       {/* admin route */}
-      <Route path="/admin" element={<MainAdminPage />}>
+      <Route path="/admin" element={<Layout />}>
+        <Route path="/admin" element={<AdminHome/>}/>
         <Route path="product-list" element={<ProductList />} />
         <Route path="product-category-list" element={<ProductCategoryList />}/>
         <Route path="orders" element={<Orders/>}/>
         <Route path="customers" element={<Customers/>}/>
         <Route path="vendors-list" element={<VendorList/>}/>
+        <Route path="vendor-creation" element={<CreateVendor/>}/>
       </Route>
     </>
   )

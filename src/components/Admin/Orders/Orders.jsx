@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { salesData } from "../../../constant/sales";
 import { MdDeleteSweep } from "react-icons/md";
+import Search from "../Search";
 
 export default function Orders() {
+  const [searchOrder, setSearchOrder] = useState('')
   const orders = salesData;
   const statusColors = {
     pending: "bg-yellow-100 text-yellow-700",
@@ -14,8 +16,23 @@ export default function Orders() {
 
   return (
     <div className="p-6 w-full">
-      <h2 className="text-2xl font-semibold mb-6">Sales</h2>
 
+      {/* title & search bar */}
+      <div className="flex justify-between items-center mb-4 sticky top-0 z-10 bg-gray-50">
+        {/* title */}
+        <h2 className="text-3xl font-bold  text-gray-800 tracking-tight">
+          Orders List
+        </h2>
+
+        {/* category search bar */}
+        <div className="p-4">
+          <Search value={searchOrder}
+                  onChange={setSearchOrder}
+                  placeholder={"Search order by status..."}/>
+        </div>
+      </div>
+
+      {/* body */}
       <div className="bg-white rounded-lg shadow-sm border min-w-3xl overflow-x-auto">
         <table className="w-full text-left overflow-auto ">
           <thead>
@@ -30,7 +47,8 @@ export default function Orders() {
           </thead>
 
           <tbody className="text-sm">
-            {orders?.map((order, idx) => (
+            {orders?.filter(order => order.status.toLowerCase().includes(searchOrder.toLowerCase()))
+            .map((order, idx) => (
               <tr key={idx} className="border-b hover:bg-gray-50 transition">
                 <td className="p-3">{order.buyerName}</td>
                 <td className="p-3">{order.vendor}</td>
