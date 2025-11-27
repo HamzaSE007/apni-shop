@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { FcShop } from "react-icons/fc";
 import { AiOutlineProduct } from "react-icons/ai";
-import { IoPricetagsOutline } from "react-icons/io5";
-import { GoPerson } from "react-icons/go";
-import { MdOutlineLogout } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsBoxSeam } from "react-icons/bs";
 import { CiBoxList, CiShop, CiCircleList } from "react-icons/ci";
 import { IoCreateOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { FiUsers, FiShoppingBag } from "react-icons/fi";
 
 export default function AdminSidebar() {
   const [openProducts, setOpenProducts] = useState(false);
   const [openVendor, setOpenVendor] = useState(false);
 
+  
   return (
     <div className="bg-gray-100 h-full w-64 px-6 py-6 border-r border-gray-300 flex flex-col justify-between overflow-y-auto">
-      {/* TOP CONTENT (scrollable) */}
+      
       <div>
         {/* LOGO */}
         <div className="flex items-center gap-2 mb-12 cursor-pointer">
@@ -26,9 +25,9 @@ export default function AdminSidebar() {
           <FcShop className="text-3xl" />
         </div>
 
-        {/* MENU */}
+        {/* Menu */}
         <ul className="flex flex-col gap-4">
-          {/* PRODUCTS DROPDOWN */}
+          {/* Product Dropdown */}
           <li>
             <div
               onClick={() => setOpenProducts(!openProducts)}
@@ -78,7 +77,7 @@ export default function AdminSidebar() {
             )}
           </li>
 
-          {/* ORDERS */}
+          {/* Orders */}
           <li className="text-gray-700 text-lg cursor-pointer p-2 rounded-lg hover:bg-white hover:shadow-sm">
             <NavLink
               to="orders"
@@ -88,13 +87,13 @@ export default function AdminSidebar() {
                 }`
               }
             >
-              <IoPricetagsOutline className="text-xl" />
+              <FiShoppingBag className="text-xl" />
               <span>Orders</span>
             </NavLink>
           </li>
 
-          {/* CUSTOMERS */}
-          <li className="flex items-center gap-4 text-gray-700 text-lg cursor-pointer p-2 rounded-lg hover:bg-white hover:shadow-sm">
+          {/* Customers */}
+          <li className="text-gray-700 text-lg cursor-pointer p-2 rounded-lg hover:bg-white hover:shadow-sm">
             <NavLink
               to="customers"
               className={({ isActive }) =>
@@ -103,7 +102,7 @@ export default function AdminSidebar() {
                 }`
               }
             >
-              <GoPerson className="text-xl" />
+              <FiUsers className="text-xl" />
               <span>Customers</span>
             </NavLink>
           </li>
@@ -159,11 +158,7 @@ export default function AdminSidebar() {
         </ul>
       </div>
 
-      {/* FOOTER LOGOUT BUTTON (fixed) */}
-      <button className="bg-rose-700 hover:bg-rose-800 text-white flex items-center gap-3 px-4 py-2 rounded-lg transition-all cursor-pointer">
-        <MdOutlineLogout className="text-xl" />
-        <span className="font-light">Log out</span>
-      </button>
+      
     </div>
   );
 }

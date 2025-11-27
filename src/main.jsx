@@ -24,6 +24,7 @@ import Login from "./components/Login/Login.jsx";
 import Layout from "./components/Admin/main/Layout.jsx";
 import {
   AdminHome,
+  AdminProfile,
   CreateVendor,
   ProductCategoryList,
   ProductList,
@@ -59,6 +60,7 @@ const router = createBrowserRouter(
         <Route path="vendors-list" element={<VendorList/>}/>
         <Route path="vendor-creation" element={<CreateVendor/>}/>
       </Route>
+      <Route path="/admin/profile" element={<AdminProfile/>}/>
     </>
   )
 );

@@ -10,7 +10,7 @@ export default function DashboardCard({
   icon: Icon
 }) {
   return (
-    <div className="p-5 bg-white rounded-xl shadow-md hover:shadow-xl transition-all cursor-pointer border border-gray-300">
+    <div className="p-5 bg-white rounded-xl shadow-[0_0_2px_rgba(0,0,0,0.3)]  hover:shadow-[0_0_10px_rgba(0,0,0,0.3)] transition-all cursor-pointer border border-gray-300">
       <div className="flex flex-col gap-6  overflow-auto">
 
         {/* Title */}

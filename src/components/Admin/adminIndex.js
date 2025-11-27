@@ -6,6 +6,8 @@ import AdminSidebar from "./Sidebar/AdminSidebar";
 import VendorList from "./Vendor/VendorList";
 import CreateVendor from "./Vendor/CreateVendor";
 import AdminHome from "./Home/AdminHome";
+import AdminProfile from "./AdminProfile/AdminProfile";
+
 
 export {AdminSidebar, 
         AdminHeader,
@@ -14,5 +16,6 @@ export {AdminSidebar,
         Order,
         VendorList,
         CreateVendor,
-        AdminHome
+        AdminHome,
+        AdminProfile
 }

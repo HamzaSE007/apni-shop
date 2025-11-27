@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   useGetAllProductCategoryQuery,
   useGetProductByCategoryQuery,
@@ -10,9 +10,10 @@ export default function ProductCategoryList() {
   const [productCategory, setProductCategory] = useState(null);
   const [searchProduct, setSearchProduct] = useState("");
   const [catSearch, setCatSearch] = useState("");
+  
 
   const {
-    data,
+    data: categories,
     isLoading: isLoadingCat,
     isError: isErrorCat,
     error: errorCat,
@@ -34,6 +35,13 @@ export default function ProductCategoryList() {
     setSelectedCategory(null);
   };
 
+  // get product count in single category
+  // const productCount = (cat) => {
+  //   const {data} = useGetProductByCategoryQuery(cat);
+  //   return data?.products.length;
+  // }
+
+
   if (isLoadingCat)
     return (
       <div className="p-6 text-xl animate-pulse">Loading Categories...</div>
@@ -51,7 +59,7 @@ export default function ProductCategoryList() {
       <div className="flex justify-between items-center mb-4 sticky top-0 z-10 bg-gray-50">
         {/* title */}
         <h2 className="text-3xl font-bold  text-gray-800 tracking-tight">
-          Product Categories
+          Categories
         </h2>
 
         {/* category search bar */}
@@ -63,27 +71,38 @@ export default function ProductCategoryList() {
       </div>
 
       {/* Category List */}
-      <div className="bg-white rounded-xl shadow-md ">
-        {data
-          ?.filter((cat) => cat.toLowerCase().includes(catSearch))
-          .map((category, idx) => (
-            <div key={idx} className="border-b last:border-none">
-              <div
-                onClick={() => openDialogBox(category)}
-                className="flex justify-between items-center p-5 cursor-pointer 
-                         hover:bg-gray-100 transition-all group"
-              >
-                <h3 className="text-lg font-semibold text-gray-700 group-hover:text-black">
-                  {category}
-                </h3>
-                <span className="text-gray-400 group-hover:text-black text-2xl font-bold">
-                  +
-                </span>
-              </div>
-            </div>
-          ))}
-      </div>
+      <div className="bg-white rounded-lg shadow-sm border min-w-3xl overflow-x-auto">
+        <table className="w-full text-left overflow-auto ">
+          <thead>
+            <tr className="border-b bg-gray-50 text-gray-600 text-sm">
+              <th className="p-3">Category Title</th>
+              <th className="p-3">Product Count</th>
+              <th className="p-3">Status</th>
+            </tr>
+          </thead>
 
+          <tbody className="text-sm">
+            {categories
+              ?.filter((cat) =>
+                cat.toLowerCase().includes(catSearch.toLowerCase())
+              )
+              .map((category,idx) => (
+                <tr
+                  key={idx}
+                  onClick={() => openDialogBox(category)}
+                  className="border-b hover:bg-gray-50 transition cursor-pointer"
+                >
+                  <td className="p-3">{category}</td>
+                  <td className="p-3 text-indigo-700">{5}</td>
+                  <td className="p-3">
+                    <span className="px-2 py-1 text-sm font-medium rounded-full bg-green-100 text-green-700">Active</span>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+      
       {/* Dialog box */}
       {selectedCategory && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex justify-center items-center">
@@ -180,3 +199,5 @@ function SkeletonLoader() {
     </div>
   );
 }
+
+

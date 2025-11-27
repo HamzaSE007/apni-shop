@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { customersInfo } from "../../../constant/customersInfo";
 import Search from "../Search";
+import CustomerDetailPopup from "./CustomerDetailPopup";
 
 export default function Customers() {
   const [searchCus, setSearchCus] = useState("");
+  const [custDetailPopup, setCustDetailPopup] = useState(false);
   const customers = customersInfo;
 
   return (
@@ -49,14 +51,21 @@ export default function Customers() {
                   <td className="p-3">{customer.name}</td>
                   <td className="p-3 text-indigo-700">{customer.phone}</td>
                   <td className="p-3">{customer.email}</td>
-                  <td className="p-3 text-purple-600 font-medium cursor-pointer ">
-                    Details
+                  <td onClick={() => setCustDetailPopup(true)}  className="p-3 text-rose-600  cursor-pointer hover:font-bold">
+                    Detail
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
+
+      {/* Open customer detail popoup */}
+      {
+        custDetailPopup && (
+          <CustomerDetailPopup open={custDetailPopup} setOpen={() => setCustDetailPopup(false)}/>
+        )
+      }
     </div>
   );
 }

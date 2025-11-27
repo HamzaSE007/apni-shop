@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { vendorsInfo } from "../../../constant/vendorsInfo";
 import Search from "../Search";
+import VendorDetailPopup from "./VendorDetailPopup";
 
 export default function VendorList() {
   const [searchVen, setSearchVen] = useState("");
+  const [openVenDetailPopup, setOpenVenDetailPopup] = useState(false);
   const vendors = vendorsInfo;
   const statusClasses = {
     Active:
@@ -66,7 +68,7 @@ export default function VendorList() {
                       {vendor.status}
                     </span>
                   </td>
-                  <td className="p-3 text-rose-600  cursor-pointer hover:font-bold">
+                  <td onClick={() => setOpenVenDetailPopup(true)} className="p-3 text-rose-600  cursor-pointer hover:font-bold">
                     Detail
                   </td>
                 </tr>
@@ -74,6 +76,13 @@ export default function VendorList() {
           </tbody>
         </table>
       </div>
+
+      {/* Open vendor detail popoup  */}
+      {
+        openVenDetailPopup && (
+          <VendorDetailPopup open={openVenDetailPopup} setOpen={() => setOpenVenDetailPopup(false)}/>
+        )
+      }
     </div>
   );
 }
