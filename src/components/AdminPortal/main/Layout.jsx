@@ -11,10 +11,10 @@ export default function Layout() {
       {/* BODY */}
       <div className="flex w-full h-[calc(100vh-80px)]">
 
-        {/* SIDEBAR (scrollable now) */}
+        {/* SIDEBAR */}
         <AdminSidebar />
 
-        {/* PAGE CONTENT (scrolls independently) */}
+        {/* PAGE CONTENT  */}
         <div className="flex-1 p-6 pb-6 bg-gray-50 overflow-y-auto">
           <Outlet />
         </div>

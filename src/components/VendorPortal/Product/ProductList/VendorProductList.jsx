@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useGetAllProductsQuery } from "../../../../services/products.api";
-import Search from "../../Search";
-import { Link } from "react-router-dom";
-import ProductDetailAdmin from "./ProductDetailAdmin";
+import Search from "../../../sharedComponents/Search";
 
-export default function ProductList() {
+export default function VendorProductList() {
   const [searchProduct, setSearchProduct] = useState("");
   const { data, isLoading, isError, error } = useGetAllProductsQuery();
 
@@ -36,7 +34,7 @@ export default function ProductList() {
           <Search
             value={searchProduct}
             onChange={setSearchProduct}
-            placeholder="Search product by title..."
+            placeholder={"Search product by title..."}
           />
         </div>
       </div>

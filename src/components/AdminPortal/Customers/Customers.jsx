@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { customersInfo } from "../../../constant/customersInfo";
-import Search from "../Search";
+import Search from "../../sharedComponents/Search";
 import CustomerDetailPopup from "./CustomerDetailPopup";
 
 export default function Customers() {

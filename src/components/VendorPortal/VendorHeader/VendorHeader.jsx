@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import { PiWarningOctagonLight } from "react-icons/pi";
 
-export default function AdminHeader() {
+export default function VendorHeader() {
   const [openProfileDropDown, setOpenProfileDropDown] = useState(false);
   const [openLogoutPopup, setOpenLogoutPopup] = useState(false);
   const [openNotiDropdown, setOpenNotiDropdown] = useState(false);
@@ -26,9 +26,9 @@ export default function AdminHeader() {
   return (
     <header className="w-full bg-white shadow-sm px-6 py-4 flex items-center justify-between sticky top-0 z-50">
       {/* Page title */}
-      <Link to="/admin">
+      <Link to="/vendor">
         <h2 className="text-2xl font-semibold text-gray-700 cursor-pointer hover:text-gray-800">
-          Dashboard
+          Vendor Dashboard
         </h2>
       </Link>
 
@@ -43,18 +43,19 @@ export default function AdminHeader() {
       </div>
 
       {/* Icons & Profile */}
-      <div className="flex items-center gap-6 relative">
+      <div className="flex items-center gap-8 relative">
         {/* Notifications */}
         <div
           className="relative"
           onClick={(e) => {
             e.stopPropagation();
             setOpenNotiDropdown(!openNotiDropdown);
+            setOpenProfileDropDown(false)
           }}
         >
-          <button className="relative text-gray-600 hover:text-gray-800 cursor-pointer">
+          <button className="relative text-gray-600 hover:text-gray-800 cursor-pointer flex items-center">
             <IoNotificationsOutline className="text-2xl" />
-            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] px-[5px] rounded-full">
+            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[12px] font-semibold size-4 rounded-full flex justify-center items-center">
               3
             </span>
           </button>
@@ -62,7 +63,7 @@ export default function AdminHeader() {
           {/* Notification Dropdown */}
           {openNotiDropdown && (
             <div
-              className="absolute right-0 mt-2 w-80 bg-white shadow-lg rounded-lg border border-gray-200 z-50 animate-fadeIn"
+              className="absolute right-0 mt-2 w-80 bg-white shadow-lg rounded-lg border border-gray-200 z-50"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-4 border-b border-gray-100 flex justify-between items-center">
@@ -112,12 +113,13 @@ export default function AdminHeader() {
           onClick={(e) => {
             e.stopPropagation();
             setOpenProfileDropDown(!openProfileDropDown);
+            setOpenNotiDropdown(false)
           }}
         >
           <button className="flex items-center gap-2 cursor-pointer">
             <GoPerson className="text-2xl text-gray-600" />
             <span className="hidden md:block text-gray-600 font-light">
-              Admin
+              Vendor
             </span>
           </button>
 

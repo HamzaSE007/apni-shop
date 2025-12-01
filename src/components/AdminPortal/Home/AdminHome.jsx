@@ -1,6 +1,6 @@
 import React from "react";
-import DashboardCard from "../DashboardCard";
-import { dashboardStats } from "../../../constant/dashboardStats";
+import DashboardCard from "../../sharedComponents/DashboardCard";
+import { dashboardStats } from "../../../constant/adminDashboardStats";
 import { Link } from "react-router-dom";
 
 export default function AdminHome() {

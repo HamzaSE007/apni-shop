@@ -1,17 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
-import {
-  useGetAllProductCategoryQuery,
-  useGetProductByCategoryQuery,
-} from "../../../../services/products.api";
-import Search from "../../Search";
+import React, { useState } from "react";
+import Search from "./Search";
+import { useGetAllProductCategoryQuery, useGetProductByCategoryQuery } from "../../services/products.api";
 
-export default function ProductCategoryList() {
+export default function CategoryList() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [productCategory, setProductCategory] = useState(null);
   const [searchProduct, setSearchProduct] = useState("");
   const [catSearch, setCatSearch] = useState("");
   
-
   const {
     data: categories,
     isLoading: isLoadingCat,

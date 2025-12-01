@@ -1,5 +1,5 @@
 import About from "./About/About";
-import Customers from "./Admin/Customers/Customers";
+import Customers from "./AdminPortal/Customers/Customers";
 import Collections from "./Collections/Collections";
 import Contact from "./Contact/Contact";
 import Footer from "./Footer";

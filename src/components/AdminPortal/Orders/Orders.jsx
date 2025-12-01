@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { salesData } from "../../../constant/sales";
 import { MdDeleteSweep } from "react-icons/md";
-import Search from "../Search";
+import Search from "../../sharedComponents/Search";
 import { IoWarningOutline } from "react-icons/io5";
 
 export default function Orders() {

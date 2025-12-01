@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { vendorsInfo } from "../../../constant/vendorsInfo";
-import Search from "../Search";
+import Search from "../../sharedComponents/Search";
 import VendorDetailPopup from "./VendorDetailPopup";
 
 export default function VendorList() {

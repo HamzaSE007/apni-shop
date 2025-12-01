@@ -21,7 +21,6 @@ import {
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store.js";
 import Login from "./components/Login/Login.jsx";
-import Layout from "./components/Admin/main/Layout.jsx";
 import {
   AdminHome,
   AdminProfile,
@@ -30,8 +29,11 @@ import {
   ProductList,
   VendorList,
   
-} from "./components/Admin/adminIndex.js";
-import Orders from "./components/Admin/Orders/Orders.jsx";
+} from "./components/AdminPortal/adminIndex.js";
+import Orders from "./components/AdminPortal/Orders/Orders.jsx";
+import Layout from "./components/AdminPortal/main/Layout.jsx";
+import VendorLayout from "./components/VendorPortal/VendorLayout.jsx";
+import { VendorCategoryList, VendorHome, VendorProductList } from "./components/VendorPortal/vendorIndex.js";
 
 
 const router = createBrowserRouter(
@@ -50,7 +52,7 @@ const router = createBrowserRouter(
       {/* login route */}
       <Route path="/login" element={<Login />} />
 
-      {/* admin route */}
+      {/* Admin Portal route */}
       <Route path="/admin" element={<Layout />}>
         <Route path="/admin" element={<AdminHome/>}/>
         <Route path="product-list" element={<ProductList />} />
@@ -61,6 +63,13 @@ const router = createBrowserRouter(
         <Route path="vendor-creation" element={<CreateVendor/>}/>
       </Route>
       <Route path="/admin/profile" element={<AdminProfile/>}/>
+
+      {/* Vendor Portal routes */}
+      <Route path="/vendor" element={<VendorLayout/>}>
+      <Route path="/vendor" element={<VendorHome/>}/>
+      <Route path="product-list" element={<VendorProductList/>}/>
+      <Route path="product-category-list" element={<VendorCategoryList/>}/>
+      </Route>
     </>
   )
 );

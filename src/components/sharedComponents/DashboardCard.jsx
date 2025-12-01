@@ -23,7 +23,7 @@ export default function DashboardCard({
         <div className="flex justify-between items-center p-3 bg-gray-100 rounded-lg">
           <div className="flex items-center gap-2">
             <FiBox className="text-gray-600 text-xl" />
-            <p className="font-medium text-gray-700">Total Products</p>
+            <p className="font-medium text-gray-700">Total {title}</p>
           </div>
           <p className="font-bold text-lg text-gray-900">{total}</p>
         </div>
@@ -32,7 +32,7 @@ export default function DashboardCard({
         <div className="flex justify-between items-center p-3 bg-green-50 border border-green-200 rounded-lg">
           <div className="flex items-center gap-2">
             <FiCheckCircle className="text-green-600 text-xl" />
-            <p className="font-medium text-green-700">Active Products</p>
+            <p className="font-medium text-green-700">Active {title}</p>
           </div>
           <p className="font-bold text-lg text-green-700">{active}</p>
         </div>
@@ -41,7 +41,7 @@ export default function DashboardCard({
         <div className="flex justify-between items-center p-3 bg-red-50 border border-red-200 rounded-lg">
           <div className="flex items-center gap-2">
             <FiXCircle className="text-red-600 text-xl" />
-            <p className="font-medium text-red-700">Inactive Products</p>
+            <p className="font-medium text-red-700">Inactive {title}</p>
           </div>
           <p className="font-bold text-lg text-red-700">{inactive}</p>
         </div>
