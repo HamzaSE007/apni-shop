@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { useGetAllProductsQuery } from "../../../../services/products.api";
 import Search from "../../../sharedComponents/Search";
+import { Link } from "react-router-dom";
 
 export default function VendorProductList() {
   const [searchProduct, setSearchProduct] = useState("");
   const { data, isLoading, isError, error } = useGetAllProductsQuery();
-
-  const [isOpenDetailPopup, setIsOpenDetailPopup] = useState({
-    productId: null,
-    openFlag: false,
-  });
 
   // Loading
   if (isLoading) return <h2 className="p-6">Loading...</h2>;
@@ -40,7 +36,7 @@ export default function VendorProductList() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-lg shadow-sm border min-w-3xl overflow-x-auto">
+      <div className="bg-white rounded-lg shadow-sm border min-w-3xl overflow-x-auto overflow-y-hidden">
         <table className="w-full text-left">
           <thead>
             <tr className="border-b bg-gray-50 text-gray-600 text-sm">
@@ -78,29 +74,18 @@ export default function VendorProductList() {
                 <td className="p-3">{p.stock}</td>
 
                 {/* Details Button */}
-                <td
-                  onClick={() =>
-                    setIsOpenDetailPopup({ productId: p.id, openFlag: true })
-                  }
-                  className="p-3 text-rose-600  cursor-pointer hover:font-bold"
-                >
+                
+                <td className="p-3 text-rose-600   ">
+                  <Link to={`/vendor/productDetail/${p.id}`}
+                       className="cursor-pointer hover:font-bold" >
                   Detail
+                </Link>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      {/* Product Detail Popup */}
-      {isOpenDetailPopup.openFlag && (
-        <ProductDetailAdmin
-          productId={isOpenDetailPopup.productId}
-          onClose={() =>
-            setIsOpenDetailPopup({ productId: null, openFlag: false })
-          }
-        />
-      )}
     </div>
   );
 }

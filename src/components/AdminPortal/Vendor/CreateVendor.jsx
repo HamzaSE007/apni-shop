@@ -44,7 +44,7 @@ export default function CreateVendor() {
               {...register("email", { 
                 required: "Email is required!",
                 pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,63}$/,
                     message: 'Please enter valid email!'
                 }
              })}
@@ -220,7 +220,7 @@ export default function CreateVendor() {
         </div>
 
         {/* Buttons */}
-        <div className="flex justify-end items-center gap-3 pt-4">
+        <div className="flex justify-end items-center gap-3 mt-4">
           {/* Reset Form btn */}
           <button
             type="button"

@@ -33,7 +33,8 @@ import {
 import Orders from "./components/AdminPortal/Orders/Orders.jsx";
 import Layout from "./components/AdminPortal/main/Layout.jsx";
 import VendorLayout from "./components/VendorPortal/VendorLayout.jsx";
-import { VendorCategoryList, VendorHome, VendorProductList } from "./components/VendorPortal/vendorIndex.js";
+import { VendorAddNewProduct, VendorCategoryList, VendorHome, VendorOrders, VendorProductList, VendorProfile } from "./components/VendorPortal/vendorIndex.js";
+import ProductDetails from "./components/VendorPortal/Product/ProductList/ProductDetails.jsx";
 
 
 const router = createBrowserRouter(
@@ -69,7 +70,11 @@ const router = createBrowserRouter(
       <Route path="/vendor" element={<VendorHome/>}/>
       <Route path="product-list" element={<VendorProductList/>}/>
       <Route path="product-category-list" element={<VendorCategoryList/>}/>
+      <Route path="orders" element={<VendorOrders/>}/>
+      <Route path="add-new-product" element={<VendorAddNewProduct/>}/>
       </Route>
+      <Route path="/vendor/productDetail/:productId" element={<ProductDetails/>}/>
+      <Route path="/vendor/profile" element={<VendorProfile/>}/>
     </>
   )
 );

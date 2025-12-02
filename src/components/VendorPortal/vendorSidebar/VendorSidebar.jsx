@@ -93,7 +93,7 @@ export default function VendorSidebar() {
           {/* Add Products */}
           <li className="text-gray-700 text-lg cursor-pointer p-2 rounded-lg hover:bg-white hover:shadow-sm">
             <NavLink
-              to="customers"
+              to="add-new-product"
               className={({ isActive }) =>
                 `flex items-center gap-4 font-light ${
                   isActive ? "text-rose-700 font-semibold" : ""

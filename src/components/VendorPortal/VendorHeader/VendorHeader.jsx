@@ -130,7 +130,7 @@ export default function VendorHeader() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Profile Link */}
-              <Link to="/admin/profile">
+              <Link to="/vendor/profile">
                 <div className="flex items-center gap-4 p-4 text-gray-700 cursor-pointer hover:bg-gray-100">
                   <GoPerson className="text-xl" />
                   <span>Profile</span>
