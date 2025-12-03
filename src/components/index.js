@@ -1,5 +1,4 @@
 import About from "./About/About";
-import Customers from "./AdminPortal/Customers/Customers";
 import Collections from "./Collections/Collections";
 import Contact from "./Contact/Contact";
 import Footer from "./Footer";
@@ -9,4 +8,4 @@ import ProductDetail from "./Product-Detail/ProductDetail";
 import ScrollToTop from "./ScrollToTop";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 
-export {Header, Footer, Home, About, Collections, Contact, ScrollToTop,ProductDetail, ShoppingCart,Customers}
+export {Header, Footer, Home, About, Collections, Contact, ScrollToTop,ProductDetail, ShoppingCart}

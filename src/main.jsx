@@ -13,7 +13,6 @@ import {
   About,
   Collections,
   Contact,
-  Customers,
   Home,
   ProductDetail,
   ShoppingCart,
@@ -26,21 +25,30 @@ import {
   AdminProfile,
   CreateVendor,
   ProductCategoryList,
-  ProductList,
+  AdminProductList,
   VendorList,
-  
-} from "./components/AdminPortal/adminIndex.js";
-import Orders from "./components/AdminPortal/Orders/Orders.jsx";
-import Layout from "./components/AdminPortal/main/Layout.jsx";
-import VendorLayout from "./components/VendorPortal/VendorLayout.jsx";
-import { VendorAddNewProduct, VendorCategoryList, VendorHome, VendorOrders, VendorProductList, VendorProfile } from "./components/VendorPortal/vendorIndex.js";
-import ProductDetails from "./components/VendorPortal/Product/ProductList/ProductDetails.jsx";
+} from "./components/AdminPanel/adminIndex.js";
+import Orders from "./components/AdminPanel/Orders/Orders.jsx";
+import Layout from "./components/AdminPanel/main/Layout.jsx";
 
+import {
+  VendorAddNewProduct,
+  VendorCategoryList,
+  VendorHome,
+  VendorOrders,
+  VendorProductList,
+  VendorProfile,
+} from "./components/VendorPanel/vendorIndex.js";
+import DashboardProductDetail from "./components/sharedComponents/DashboardProductDetail.jsx";
+import VendorLayout from "./components/VendorPanel/VendorLayout.jsx";
+import Customers from "./components/AdminPanel/Customers/Customers.jsx";
+import SuperAdminLayout from "./components/SuperAdminPanel/SuperAdminLayout.jsx";
+import { SuperAdminDashboard, SuperAdminProfile } from "./components/SuperAdminPanel/SuperAdminIndex.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-    {/* HOME route */}
+      {/* HOME route */}
       <Route path="" element={<App />}>
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
@@ -53,28 +61,41 @@ const router = createBrowserRouter(
       {/* login route */}
       <Route path="/login" element={<Login />} />
 
-      {/* Admin Portal route */}
+      {/* Admin Panel route */}
       <Route path="/admin" element={<Layout />}>
-        <Route path="/admin" element={<AdminHome/>}/>
-        <Route path="product-list" element={<ProductList />} />
-        <Route path="product-category-list" element={<ProductCategoryList />}/>
-        <Route path="orders" element={<Orders/>}/>
-        <Route path="customers" element={<Customers/>}/>
-        <Route path="vendors-list" element={<VendorList/>}/>
-        <Route path="vendor-creation" element={<CreateVendor/>}/>
+        <Route path="/admin" element={<AdminHome />} />
+        <Route path="product-list" element={<AdminProductList />} />
+        <Route path="product-category-list" element={<ProductCategoryList />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="customers" element={<Customers />} />
+        <Route path="vendors-list" element={<VendorList />} />
+        <Route path="vendor-creation" element={<CreateVendor />} />
       </Route>
-      <Route path="/admin/profile" element={<AdminProfile/>}/>
+      <Route path="/admin/profile" element={<AdminProfile />} />
+      <Route
+        path="/admin/productDetail/:productId"
+        element={<DashboardProductDetail />}
+      />
 
-      {/* Vendor Portal routes */}
-      <Route path="/vendor" element={<VendorLayout/>}>
-      <Route path="/vendor" element={<VendorHome/>}/>
-      <Route path="product-list" element={<VendorProductList/>}/>
-      <Route path="product-category-list" element={<VendorCategoryList/>}/>
-      <Route path="orders" element={<VendorOrders/>}/>
-      <Route path="add-new-product" element={<VendorAddNewProduct/>}/>
+      {/* Vendor Panel routes */}
+      <Route path="/vendor" element={<VendorLayout />}>
+        <Route path="/vendor" element={<VendorHome />} />
+        <Route path="product-list" element={<VendorProductList />} />
+        <Route path="product-category-list" element={<VendorCategoryList />} />
+        <Route path="orders" element={<VendorOrders />} />
+        <Route path="add-new-product" element={<VendorAddNewProduct />} />
       </Route>
-      <Route path="/vendor/productDetail/:productId" element={<ProductDetails/>}/>
-      <Route path="/vendor/profile" element={<VendorProfile/>}/>
+      <Route path="/vendor/profile" element={<VendorProfile />} />
+      <Route
+        path="/vendor/productDetail/:productId"
+        element={<DashboardProductDetail />}
+      />
+
+      {/* Super Admin Panel Routes */}
+      <Route path="/superAdmin" element={<SuperAdminLayout />}>
+        <Route path="/superAdmin" element={<SuperAdminDashboard />} />
+      </Route>
+      <Route path="/superAdmin/profile" element={<SuperAdminProfile/>} />
     </>
   )
 );
