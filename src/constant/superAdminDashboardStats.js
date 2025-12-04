@@ -1,11 +1,11 @@
 import {
   FiUsers,
   FiUserCheck,
-  FiUserX,
   FiShoppingBag,
   FiBox,
   FiLayers,
 } from "react-icons/fi";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
 export const superAdminDashboardStats = {
   admins: {
@@ -14,7 +14,7 @@ export const superAdminDashboardStats = {
     active: 10,
     inactive: 2,
     lowStock: 0,       // not applicable but added for structure consistency
-    icon: FiUsers,
+    icon: MdOutlineAdminPanelSettings,
   },
 
   vendors: {
@@ -32,7 +32,7 @@ export const superAdminDashboardStats = {
     active: 3500,
     inactive: 600,
     lowStock: 100,     // low engagement customers (optional)
-    icon: FiUserX,
+    icon: FiUsers,
   },
 
   products: {

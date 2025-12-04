@@ -45,13 +45,13 @@ export default function SuperAdminDashboard() {
         <Link to="orders">
           <DashboardCard {...superAdminDashboardStats.orders} />
         </Link>
-        <Link to="customers">
+        <Link to="customer-list">
           <DashboardCard {...superAdminDashboardStats.customers} />
         </Link>
         <Link to="product-category-list">
           <DashboardCard {...superAdminDashboardStats.categories} />
         </Link>
-        <Link to="products-list">
+        <Link to="product-list">
           <DashboardCard {...superAdminDashboardStats.products} />
         </Link>
       </div>

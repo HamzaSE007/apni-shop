@@ -7,7 +7,6 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-  Routes,
 } from "react-router-dom";
 import {
   About,
@@ -43,12 +42,27 @@ import DashboardProductDetail from "./components/sharedComponents/DashboardProdu
 import VendorLayout from "./components/VendorPanel/VendorLayout.jsx";
 import Customers from "./components/AdminPanel/Customers/Customers.jsx";
 import SuperAdminLayout from "./components/SuperAdminPanel/SuperAdminLayout.jsx";
-import { SuperAdminDashboard, SuperAdminProfile } from "./components/SuperAdminPanel/SuperAdminIndex.js";
+import {
+  AdminDetailPage,
+  AdminList,
+  CreateAdmin,
+  SuperAdminCategoryList,
+  SuperAdminCreateVendor,
+  SuperAdminCustomerList,
+  SuperAdminDashboard,
+  SuperAdminOrderList,
+  SuperAdminProductList,
+  SuperAdminProfile,
+  SuperAdminVendorList,
+} from "./components/SuperAdminPanel/SuperAdminIndex.js";
+import CustomerDashboardLayout from "./components/CustomerDashboard/CustomerDashboardLayout.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      {/* HOME route */}
+
+      {/* ------------------------- HOME route ------------------------- */}
+
       <Route path="" element={<App />}>
         <Route path="/" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
@@ -58,10 +72,14 @@ const router = createBrowserRouter(
         <Route path="/shopping-cart" element={<ShoppingCart />} />
       </Route>
 
-      {/* login route */}
+
+      {/* ------------------------- login route ------------------------- */}
+
       <Route path="/login" element={<Login />} />
 
-      {/* Admin Panel route */}
+
+      {/* ----------------------- Admin Panel route ----------------------- */}
+
       <Route path="/admin" element={<Layout />}>
         <Route path="/admin" element={<AdminHome />} />
         <Route path="product-list" element={<AdminProductList />} />
@@ -77,7 +95,9 @@ const router = createBrowserRouter(
         element={<DashboardProductDetail />}
       />
 
-      {/* Vendor Panel routes */}
+
+      {/* ----------------------- Vendor Panel routes ----------------------- */}
+
       <Route path="/vendor" element={<VendorLayout />}>
         <Route path="/vendor" element={<VendorHome />} />
         <Route path="product-list" element={<VendorProductList />} />
@@ -91,11 +111,39 @@ const router = createBrowserRouter(
         element={<DashboardProductDetail />}
       />
 
-      {/* Super Admin Panel Routes */}
+
+      {/* ------------------ Super Admin Panel Routes ----------------- */}
+
       <Route path="/superAdmin" element={<SuperAdminLayout />}>
         <Route path="/superAdmin" element={<SuperAdminDashboard />} />
+        <Route path="admin-list" element={<AdminList />} />
+        <Route path="create-admin" element={<CreateAdmin/>}/>
+        <Route path="vendor-list" element={<SuperAdminVendorList />} />
+        <Route path="create-vendor" element={<SuperAdminCreateVendor />} />
+        <Route path="product-list" element={<SuperAdminProductList />} />
+        <Route path="customer-list" element={<SuperAdminCustomerList/>}/>
+        <Route
+          path="product-category-list"
+          element={<SuperAdminCategoryList />}
+        />
+        <Route path="orders" element={<SuperAdminOrderList />} />
       </Route>
-      <Route path="/superAdmin/profile" element={<SuperAdminProfile/>} />
+      <Route path="/superAdmin/profile" element={<SuperAdminProfile />} />
+      <Route
+        path="/superAdmin/productDetail/:productId"
+        element={<DashboardProductDetail />}
+      />
+      <Route
+        path="/superAdmin/adminDetail/:adminId"
+        element={<AdminDetailPage />}
+      />
+
+
+      {/* ------------------ Customer Dashboard Routes ----------------- */}
+
+      <Route path="/customerDashboard" element={<CustomerDashboardLayout/>}>
+
+      </Route>
     </>
   )
 );

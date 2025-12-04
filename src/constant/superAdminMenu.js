@@ -1,7 +1,8 @@
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import { CiCircleList } from "react-icons/ci";
+import { CiBoxList, CiCircleList, CiShop } from "react-icons/ci";
 import { IoCreateOutline } from "react-icons/io5";
-import { CiShop } from "react-icons/ci";
+import { FiUsers, FiShoppingBag } from "react-icons/fi";
+import { BsBoxSeam } from "react-icons/bs";
 
 export const superAdminMenu = [
     {
@@ -36,4 +37,30 @@ export const superAdminMenu = [
             }
         ]
     },
+    {
+        label: 'Order',
+        icon: FiShoppingBag,
+        to: 'orders'
+    },
+    {
+        label: 'Product',
+        icon: BsBoxSeam,
+        children: [
+            {
+                label: 'Product List',
+                icon: CiBoxList,
+                to: 'product-list'
+            },
+            {
+                label: 'Category List',
+                icon: CiBoxList,
+                to: 'product-category-list'
+            },
+        ]
+    },
+    {
+        label: 'Customers',
+        icon: FiUsers,
+        to: 'customer-list'
+    }
 ]

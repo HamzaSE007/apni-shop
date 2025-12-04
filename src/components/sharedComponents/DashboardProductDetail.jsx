@@ -5,8 +5,8 @@ import { useGetProductByIdQuery } from "../../services/products.api";
 
 export default function DashboardProductDetail() {
   const { productId } = useParams();
-  const {pathname, state} = useLocation();
-  const backPath = pathname.includes('/vendor') ? '/vendor/product-list' : '/admin/product-list'
+  const { pathname } = useLocation();
+  const backPath = pathname.includes('/vendor') ? '/vendor/product-list' : (pathname.includes('/superAdmin') ? '/superAdmin/product-list' : '/admin/product-list')
   
   
   const {

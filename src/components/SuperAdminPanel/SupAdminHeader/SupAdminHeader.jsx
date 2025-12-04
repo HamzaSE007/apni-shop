@@ -3,6 +3,6 @@ import DashboardHeader from '../../sharedComponents/DashboardHeader'
 
 export default function SupAdminHeader() {
   return (
-    <DashboardHeader title='Super Admin Dashboard' titleRoute='/superAdmin' profileName='Super Admin' profileRoute='/superAdmin/profile'/>
+    <DashboardHeader title='Super Admin Dashboard' titleRoute='/superAdmin' profileName='Super Admin' profileRoute='/superAdmin/profile' isActive={true}/>
   )
 }

@@ -71,7 +71,7 @@ export default function DashboardSidebar({ menu }) {
               <NavLink
                 to={item.to}
                 className={({ isActive }) =>
-                  `flex items-center gap-4 text-lg cursor-pointer p-2 rounded-lg hover:bg-white hover:shadow-sm font-light ${
+                  `flex items-center gap-4 text-lg cursor-pointer p-2 rounded-lg hover:bg-white hover:shadow-sm font-light text-gray-600 ${
                     isActive ? "text-rose-700 font-semibold" : ""
                   }`
                 }
