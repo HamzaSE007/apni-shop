@@ -56,6 +56,7 @@ import {
   SuperAdminVendorList,
 } from "./components/SuperAdminPanel/SuperAdminIndex.js";
 import CustomerDashboardLayout from "./components/CustomerDashboard/CustomerDashboardLayout.jsx";
+import { CustomerDashboardOverview, CustomerOrders } from "./components/CustomerDashboard/CustomerDashboardIndex.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -142,7 +143,9 @@ const router = createBrowserRouter(
       {/* ------------------ Customer Dashboard Routes ----------------- */}
 
       <Route path="/customerDashboard" element={<CustomerDashboardLayout/>}>
-
+      <Route index element={<CustomerDashboardOverview/>}/>
+      <Route path="overview" element={<CustomerDashboardOverview/>}/>
+      <Route path="my-orders" element={<CustomerOrders/>}/>
       </Route>
     </>
   )

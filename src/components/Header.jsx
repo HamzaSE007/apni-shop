@@ -15,7 +15,7 @@ export default function Header() {
       (preVal, currVal) => preVal + currVal.quantity,
       0
     );
-    setQuantity(totalQuantity);
+    console.log("tootal quantity", totalQuantity);
   }, [cart]);
 
   return (

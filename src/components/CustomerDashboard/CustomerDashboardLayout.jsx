@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import CustomerDashboardHeader from "./CustomerDashboardHeader/CustomerDashboardHeader";
+import CustomerDashboardSidebar from "./CustomerDashboardSidebar/CustomerDashboardSidebar";
 
 export default function CustomerDashboardLayout() {
   return (
@@ -8,13 +9,16 @@ export default function CustomerDashboardLayout() {
       {/* Header */}
       <CustomerDashboardHeader/>
       {/* body */}
-      <div className="w-full h-[calc(100vh-80px)] flex">
-        {/* Sidebar */}
+      <div className="w-full h-[calc(100vh-80px)] flex ">
+
+        {/* sidebar */}
+        <CustomerDashboardSidebar/>
 
         {/* outlet */}
-        <div className="flex-1 p-6 overflow-auto">
-          <Outlet />
+        <div className="flex-1 overflow-auto p-6 size-full bg-gray-50">
+          <Outlet/>
         </div>
+
       </div>
     </div>
   );

@@ -1,0 +1,58 @@
+export const specificCustomerOrders = [
+  {
+    orderNo: "ORD-1001",
+    product: "Wireless Earbuds",
+    price: 59.99,
+    status: "delivered",
+    date: "2025-01-14",
+  },
+  {
+    orderNo: "ORD-1002",
+    product: "Smart Watch Series 7",
+    price: 129.99,
+    status: "processing",
+    date: "2025-01-15",
+  },
+  {
+    orderNo: "ORD-1003",
+    product: "Gaming Mouse RGB",
+    price: 34.5,
+    status: "pending",
+    date: "2025-01-16",
+  },
+  {
+    orderNo: "ORD-1004",
+    product: "Laptop Backpack",
+    price: 45.0,
+    status: "shipped",
+    date: "2025-01-17",
+  },
+  {
+    orderNo: "ORD-1005",
+    product: "Bluetooth Speaker",
+    price: 75.25,
+    status: "completed",
+    date: "2025-01-18",
+  },
+  {
+    orderNo: "ORD-1006",
+    product: "Mechanical Keyboard",
+    price: 89.99,
+    status: "cancelled",
+    date: "2025-01-18",
+  },
+  {
+    orderNo: "ORD-1007",
+    product: "USB-C Charger 45W",
+    price: 25.0,
+    status: "delivered",
+    date: "2025-01-19",
+  },
+  {
+    orderNo: "ORD-1008",
+    product: "4K Monitor 27-inch",
+    price: 299.99,
+    status: "processing",
+    date: "2025-01-19",
+  },
+];
